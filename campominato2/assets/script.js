@@ -9,6 +9,7 @@ const fieldElement = document.querySelector('.field');
 let bombsArray = [];//array per memorizzare le posizioni delle bombe
 let stopGame = false;//variabile per capire se il gioco è over o continua
 const gameResultElement = document.getElementById('result');//prendo id per poi stampare il risultato
+let clicksWithoutBoom = 0;
 
 // Definisci la funzione per generare la griglia
 function generateField(domElement, limit) {
@@ -30,9 +31,10 @@ function generateField(domElement, limit) {
                 {//Se si clicca su una bomba,casella diventa red e game over
                     this.classList.add('bg-red');
                     stopGame = true;
-                    gameResultElement.textContent = "Game Over!";
+                    gameResultElement.textContent = "Game Over!Your score is: " + clicksWithoutBoom;//+ punteggio(anche se perde)
                 } else {
                     this.classList.toggle('bg-dark-blue'); //altrimenti il blu normale
+                    clicksWithoutBoom++; // tengo il conteggio dei click andati bene
                 }
             }
         });
