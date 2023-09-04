@@ -28,6 +28,10 @@ body{
 	background-color: #0055A4;;
 }
 
+.bg-red{
+    background-color: red;
+}
+
 
 .field{
 	display: flex;
