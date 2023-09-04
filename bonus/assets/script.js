@@ -5,15 +5,15 @@ Aggiungere una select accanto al bottone di generazione, che fornisca una scelta
 -difficoltà 2 ⇒ 81 caselle, con un numero compreso tra 1 e 81, divise in 9 caselle per 9 righe;
 -difficoltà 3 ⇒ 49 caselle, con un numero compreso tra 1 e 49, divise in 7 caselle per 7 righe; */
 
-//imposto il limite di 100(meglio fuori dalle funzioni)
+// Imposta il limite di default fuori dalle funzioni
 let limit = 100;
 
-// Aggiungo un evento change alla select
+// Aggiungi un evento change alla select
 document.getElementById('difficulty').addEventListener('change', function () {
-    // Ottengo il valore selezionato
+    // Ottieni il valore selezionato
     const selectedDifficulty = Number(this.value);
 
-    // Imposto il limite in base alla difficoltà selezionata
+    // Imposta il limite in base alla difficoltà selezionata
     if (selectedDifficulty === 1) {
         limit = 100;
     } else if (selectedDifficulty === 2) {
@@ -22,30 +22,34 @@ document.getElementById('difficulty').addEventListener('change', function () {
         limit = 49;
     }
 });
-//evento per il bottone da cliccare
-document.getElementById('start_game').addEventListener('click', startGame);
 
+// Seleziona l'elemento field dalla DOM
+const fieldElement = document.querySelector('.field');
 
-function startGame() {
-    //Selezione l'elemento field della DOM
-    const fieldElement = document.querySelector('.field');
-    //richiamo la funzione per dire dove si andrà a stampare(dentro field)
+// Aggiungi un evento al form per gestire il click sul pulsante "Start Game"
+document.querySelector('form').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+
+    // Cancella il contenuto dell'elemento field
+    fieldElement.innerHTML = '';
+
+    // Genera la griglia utilizzando il limite corrente
     generateField(fieldElement, limit);
-}
+});
 
-//definiamo la funzione per generare la griglia
+// Definisci la funzione per generare la griglia
 function generateField(domElement, limit) {
-    // Genero la griglia in pagina
+    // Genera la griglia in pagina
     for (let i = 0; i < limit; i++) {
-        //creo un elemento nel markup per rappresentare la singoal cella
+        // Crea un elemento nel markup per rappresentare la singola cella
         const cellElement = document.createElement("div");
-        //aggiungo la classe "cell" e poi stampo in pagina
+        // Aggiungi la classe "cell" e poi stampalo in pagina
         cellElement.className = "cell";
         cellElement.append(i + 1);
         domElement.append(cellElement);
-        //uso math.sqrt per calcolare la larghezza e .style.width per cambiare nel mio css
-        cellElement.style.width = `calc(100% / ${Math.sqrt(limit)})`
-        //aggiungo eventolistener quando clicco sulla cella per cambiare colore
+        // Usa math.sqrt per calcolare la larghezza e .style.width per cambiarla nel CSS
+        cellElement.style.width = `calc(100% / ${Math.sqrt(limit)})`;
+        // Aggiungi un event listener quando si clicca sulla cella per cambiare il colore
         cellElement.addEventListener('click', function () {
             this.classList.toggle('bg-dark-blue'); // Alterna la classe 'bg-green' per cambiare il colore
         });
