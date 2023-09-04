@@ -1,7 +1,30 @@
+/*
+BONUS:
+Aggiungere una select accanto al bottone di generazione, che fornisca una scelta tra tre diversi livelli di difficoltà:
+-difficoltà 1 ⇒ 100 caselle, con un numero compreso tra 1 e 100, divise in 10 caselle per 10 righe;
+-difficoltà 2 ⇒ 81 caselle, con un numero compreso tra 1 e 81, divise in 9 caselle per 9 righe;
+-difficoltà 3 ⇒ 49 caselle, con un numero compreso tra 1 e 49, divise in 7 caselle per 7 righe; */
+
+//imposto il limite di 100(meglio fuori dalle funzioni)
+let limit = 100;
+
+// Aggiungo un evento change alla select
+document.getElementById('difficulty').addEventListener('change', function () {
+    // Ottengo il valore selezionato
+    const selectedDifficulty = Number(this.value);
+
+    // Imposto il limite in base alla difficoltà selezionata
+    if (selectedDifficulty === 1) {
+        limit = 100;
+    } else if (selectedDifficulty === 2) {
+        limit = 81;
+    } else if (selectedDifficulty === 3) {
+        limit = 49;
+    }
+});
 //evento per il bottone da cliccare
 document.getElementById('start_game').addEventListener('click', startGame);
-//imposto il limite di 100(meglio fuori dalle funzioni)
-const limit = 100;
+
 
 function startGame() {
     //Selezione l'elemento field della DOM
