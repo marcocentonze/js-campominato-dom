@@ -43,6 +43,8 @@ function generateField(domElement, limit) {
         cellElement.className = "cell";
         cellElement.append(i + 1);
         domElement.append(cellElement);
+        //uso math.sqrt per calcolare la larghezza e .style.width per cambiare nel mio css
+        cellElement.style.width = `calc(100% / ${Math.sqrt(limit)})`
         //aggiungo eventolistener quando clicco sulla cella per cambiare colore
         cellElement.addEventListener('click', function () {
             this.classList.toggle('bg-dark-blue'); // Alterna la classe 'bg-green' per cambiare il colore
