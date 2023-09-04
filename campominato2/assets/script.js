@@ -8,6 +8,7 @@ let limit = 100;
 const fieldElement = document.querySelector('.field');
 let bombsArray = [];//array per memorizzare le posizioni delle bombe
 let stopGame = false;//variabile per capire se il gioco è over o continua
+const gameResultElement = document.getElementById('result');//prendo id per poi stampare il risultato
 
 // Definisci la funzione per generare la griglia
 function generateField(domElement, limit) {
@@ -29,7 +30,7 @@ function generateField(domElement, limit) {
                 {//Se si clicca su una bomba,casella diventa red e game over
                     this.classList.add('bg-red');
                     stopGame = true;
-                    alert("Hai perso!Mi dispiace ma hai cliccato su una bomba.");
+                    gameResultElement.textContent = "Game Over!";
                 } else {
                     this.classList.toggle('bg-dark-blue'); //altrimenti il blu normale
                 }

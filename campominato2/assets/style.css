@@ -50,3 +50,16 @@ body{
 	}
 
 }
+
+#result{
+    text-align: center;
+    color: red;
+    font-size: 300%;
+}
+
+.result-style{
+    width: 75%;
+    margin: auto;
+    background-color: orange;
+    margin-top:10px;
+}
